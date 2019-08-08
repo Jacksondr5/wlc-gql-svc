@@ -1,11 +1,20 @@
 // const { ApolloServer, gql } = require('apollo-server');
-import { ApolloServer } from 'apollo-server';
-import typeDefs from './typeDefs';
+import { ApolloServer } from "apollo-server";
+import { importSchema } from "graphql-import";
+import * as fs from "fs";
 
 const user = {
-  name: 'Test',
-  email: 'test@example.com',
-  displayName: 'test',  
+  name: "Test",
+  email: "test@example.com",
+  displayName: "test"
+};
+
+const testChallenge = {
+  name: "test",
+  startDate: "ewrg",
+  endDate: "sdfg",
+  participants: [user],
+  totalPrizeMoney: 3456
 };
 
 // Resolvers define the technique for fetching the types in the
@@ -14,8 +23,11 @@ const resolvers = {
   Query: {
     authenticatedUser: () => user
   },
+  Mutation: {
+    createChallenge: () => testChallenge
+  }
 };
-
+const typeDefs = importSchema("./dist/schema.graphql");
 // In the most basic sense, the ApolloServer can be started
 // by passing type definitions (typeDefs) and the resolvers
 // responsible for fetching the data for those types.

@@ -1,17 +1,27 @@
 # WLC GQL SVC
-This repo houses the [GrahpQL](https://graphql.org/) service for the WLC apps.  The service is used to power the front end web application, several back end processes, and possibly a future mobile app.
+
+This repo houses the [GrahpQL](https://graphql.org/) service for the WLC apps. The service is used to power the front end web application, several back end processes, and possibly a future mobile app.
 
 ## Key Technologies
+
 - [Apollo Server](https://www.apollographql.com): The GraphQL framework that powers the server, providing the basic web server, cloud teleletry system, and several tools that accelerate development
 - [TypeScript](https://www.typescriptlang.org/): A superset of JavaScript that provides static type checking
-- [Jest](https://jestjs.io/): An easy to use JS testing framework.  Used for unit testing.
+- [Jest](https://jestjs.io/): An easy to use JS testing framework. Used for unit testing.
+- [GraphQL code generator](https://graphql-code-generator.com/): Gave an easy way to generate TS types from .graphql files. Apollo didn't _seem_ to have an easy way to do this, but this utility worked out great.
 
 ## How to Use This Repo
+
 1. Clone the repo
 2. Install dependencies using the terminal
 
-        npm i
-3. Run the server
+```
+> npm i
+```
 
-        npm run watch-debug
+3. Debug the server
+
+```
+> npm run watch-debug
+```
+
 4. Connect using [GraphQL Playground](https://github.com/prisma/graphql-playground)
