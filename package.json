@@ -18,7 +18,7 @@
     "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,GraphQL,Node\" -c \"cyan.bold,magenta.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-gql\" \"npm run serve-debug\"",
     "push-schema": "npx apollo service:push",
     "build-gql": "graphql-codegen --config graphqlCodegen.yml && ts-node copyGraphQLFiles.ts",
-    "watch-gql": "graphql-codegen --config graphqlCodegen.yml --watch && ts-node copyGraphQLFiles.ts --watch"
+    "watch-gql": "concurrently -k -p \"[{name}]\" -n \"Codegen,File Copy\" -c \"red.bold,yellow.bold\" \"graphql-codegen --config graphqlCodegen.yml --watch\"  \"ts-node copyGraphQLFiles.ts --watch\""
   },
   "dependencies": {
     "apollo-server": "^2.8.1",
@@ -39,11 +39,10 @@
     "@types/body-parser": "^1.17.0",
     "@types/dotenv": "^6.1.1",
     "@types/graphql": "^14.2.3",
-    "@types/jest": "^24.0.16",
+    "@types/jest": "^24.0.17",
     "@types/node": "^12.6.9",
     "@types/recursive-readdir": "^2.2.0",
     "@types/request": "^2.48.2",
-    "@types/shelljs": "^0.8.5",
     "apollo": "^2.16.3",
     "chai": "^4.2.0",
     "concurrently": "^4.1.1",
@@ -51,7 +50,6 @@
     "lodash": "^4.17.15",
     "nodemon": "^1.19.1",
     "recursive-readdir": "^2.2.2",
-    "shelljs": "^0.8.3",
     "ts-jest": "^24.0.2",
     "ts-node": "^8.3.0",
     "typescript": "^3.5.3"

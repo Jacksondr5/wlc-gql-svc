@@ -1,3 +1,5 @@
+#import Challenge from './Challenge/Challenge.graphql'
+
 type Query {
   authenticatedUser: User!
 }
@@ -19,15 +21,6 @@ type User {
   displayName: String!
   #challenges: [Challenge!]!
   #friends: [User!]!
-}
-
-type Challenge {
-  name: String!
-  startDate: String!
-  endDate: String!
-  participants: [User!]!
-  totalPrizeMoney: Int!
-  # weeklyWeighIns: [WeeklyWeighIn!]!
 }
 
 type WeeklyWeighIn {
