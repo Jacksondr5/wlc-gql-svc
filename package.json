@@ -16,7 +16,7 @@
     "watch-ts": "tsc -w",
     "serve-debug": "nodemon --inspect dist/server.js",
     "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,GraphQL,Node\" -c \"cyan.bold,magenta.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-gql\" \"npm run serve-debug\"",
-    "check-schema": "npx apollo service:check --endpoint=http://localhost:4000",
+    "push-schema": "npx apollo service:push",
     "build-gql": "graphql-codegen --config graphqlCodegen.yml && ts-node copyGraphQLFiles.ts",
     "watch-gql": "graphql-codegen --config graphqlCodegen.yml --watch && ts-node copyGraphQLFiles.ts --watch"
   },
