@@ -1,0 +1,7 @@
+type User {
+  name: String!
+  email: String!
+  displayName: String!
+  #challenges: [Challenge!]!
+  #friends: [User!]!
+}

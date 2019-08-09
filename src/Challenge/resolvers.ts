@@ -1,4 +1,4 @@
-import { Challenge } from "../generated/graphql";
+import { Challenge } from "../_generated/graphql";
 
 export default class ChallengeResolvers {
   static createChallengeMutation(): Challenge {

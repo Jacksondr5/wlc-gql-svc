@@ -1,21 +1,15 @@
 import { ApolloServer } from "apollo-server";
 import { importSchema } from "graphql-import";
-import { Resolvers } from "./generated/graphql";
+import { Resolvers } from "./_generated/graphql";
 import ChallengeResolvers from "./Challenge/resolvers";
-
-const user = {
-  name: "Test",
-  email: "test@example.com",
-  displayName: "test"
-};
+import UserResolvers from "./User/resolvers";
 
 const resolvers: Resolvers = {
   Query: {
-    authenticatedUser: () => user
+    authenticatedUser: () => UserResolvers.getAuthenticatedUser()
   },
   Mutation: {
-    createChallenge: (root, args, context) =>
-      ChallengeResolvers.createChallengeMutation()
+    createChallenge: () => ChallengeResolvers.createChallengeMutation()
   }
 };
 const typeDefs = importSchema("./dist/schema.graphql");

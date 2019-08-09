@@ -1,5 +1,5 @@
 import ChallengeResolvers from "./resolvers";
-import { Challenge, User } from "../generated/graphql";
+import { Challenge, User } from "../_generated/graphql";
 
 test("transforms source data properly", () => {
   const testUser: User = {
