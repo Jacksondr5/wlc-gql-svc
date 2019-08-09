@@ -9,6 +9,7 @@ const copyFiles = () => {
         console.log(file);
         const dest = file.replace(/^src/, "dist");
         console.log("mkdir");
+        console.log(`dest: ${dest.replace(/\\{1}(\w*)\.graphql$/, "")}`);
         fs.mkdirSync(dest.replace(/\\{1}(\w*)\.graphql$/, ""), {
           recursive: true
         });
