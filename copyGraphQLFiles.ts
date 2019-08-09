@@ -8,8 +8,11 @@ const copyFiles = () => {
       files.forEach(file => {
         console.log(file);
         const dest = file.replace(/^src/, "dist");
+        console.log(`dest: ${dest}`);
         console.log("mkdir");
-        console.log(`dest: ${dest.replace(/\\{1}(\w*)\.graphql$/, "")}`);
+        console.log(
+          `dest replaced: ${dest.replace(/\\{1}(\w*)\.graphql$/, "")}`
+        );
         fs.mkdirSync(dest.replace(/\\{1}(\w*)\.graphql$/, ""), {
           recursive: true
         });
