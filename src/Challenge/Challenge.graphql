@@ -6,3 +6,10 @@ type Challenge {
   totalPrizeMoney: Int!
   # weeklyWeighIns: [WeeklyWeighIn!]!
 }
+
+input NewChallenge {
+  name: String!
+  startDate: String!
+  endDate: String!
+  entryFee: Int!
+}

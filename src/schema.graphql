@@ -9,13 +9,6 @@ type Mutation {
   createChallenge(newChallenge: NewChallenge!): Challenge!
 }
 
-input NewChallenge {
-  name: String!
-  startDate: String!
-  endDate: String!
-  entryFee: Int!
-}
-
 type WeeklyWeighIn {
   date: String!
   challenge: Challenge!

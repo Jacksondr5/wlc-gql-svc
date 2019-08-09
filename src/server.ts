@@ -9,7 +9,8 @@ const resolvers: Resolvers = {
     authenticatedUser: () => UserResolvers.getAuthenticatedUser()
   },
   Mutation: {
-    createChallenge: () => ChallengeResolvers.createChallengeMutation()
+    createChallenge: (parent, args, context, info) =>
+      ChallengeResolvers.createChallengeMutation(args)
   }
 };
 const typeDefs = importSchema("./dist/schema.graphql");

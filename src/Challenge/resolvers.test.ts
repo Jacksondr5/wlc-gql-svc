@@ -1,7 +1,21 @@
 import ChallengeResolvers from "./resolvers";
-import { Challenge, User } from "../_generated/graphql";
+import {
+  Challenge,
+  User,
+  NewChallenge,
+  MutationCreateChallengeArgs
+} from "../_generated/graphql";
 
 test("transforms source data properly", () => {
+  const createChallengeArgs: MutationCreateChallengeArgs = {
+    newChallenge: {
+      name: "testName",
+      startDate: "some date",
+      endDate: "some other date",
+      entryFee: 40
+    }
+  };
+
   const testUser: User = {
     name: "Test",
     email: "test@example.com",
@@ -9,14 +23,14 @@ test("transforms source data properly", () => {
   };
 
   const testChallenge: Challenge = {
-    name: "test",
-    startDate: "ewrg",
-    endDate: "sdfg",
+    name: createChallengeArgs.newChallenge.name,
+    startDate: createChallengeArgs.newChallenge.startDate,
+    endDate: createChallengeArgs.newChallenge.endDate,
     participants: [testUser],
-    totalPrizeMoney: 3456
+    totalPrizeMoney: 0
   };
 
-  expect(ChallengeResolvers.createChallengeMutation()).toStrictEqual(
-    testChallenge
-  );
+  expect(
+    ChallengeResolvers.createChallengeMutation(createChallengeArgs)
+  ).toStrictEqual(testChallenge);
 });

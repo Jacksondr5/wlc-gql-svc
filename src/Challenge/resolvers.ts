@@ -1,7 +1,7 @@
-import { Challenge } from "../_generated/graphql";
+import { Challenge, MutationCreateChallengeArgs } from "../_generated/graphql";
 
 export default class ChallengeResolvers {
-  static createChallengeMutation(): Challenge {
+  static createChallengeMutation(args: MutationCreateChallengeArgs): Challenge {
     const user = {
       name: "Test",
       email: "test@example.com",
@@ -9,11 +9,11 @@ export default class ChallengeResolvers {
     };
 
     const challenge = {
-      name: "test",
-      startDate: "ewrg",
-      endDate: "sdfg",
+      name: args.newChallenge.name,
+      startDate: args.newChallenge.startDate,
+      endDate: args.newChallenge.endDate,
       participants: [user],
-      totalPrizeMoney: 3456
+      totalPrizeMoney: 0
     };
     return challenge;
   }
