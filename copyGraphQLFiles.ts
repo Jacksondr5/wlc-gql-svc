@@ -4,11 +4,13 @@ import recursiveReadDir = require("recursive-readdir");
 
 //TODO: should probably write tests for this since it's
 //caused build errors in the past
+console.log("Starting .graphql file copy");
 const copyFiles = () => {
   recursiveReadDir("./src")
     .then(files => files.filter(name => name.match(/\.*\.graphql/)))
     .then(files =>
       files.forEach(file => {
+        console.log(`Copying ${file}`);
         const dest = file.replace(/^src/, "dist");
         fs.mkdirSync(path.parse(dest).dir, {
           recursive: true
