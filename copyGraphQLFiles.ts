@@ -8,9 +8,11 @@ const copyFiles = () => {
       files.forEach(file => {
         console.log(file);
         const dest = file.replace(/^src/, "dist");
+        console.log("mkdir");
         fs.mkdirSync(dest.replace(/\\{1}(\w*)\.graphql$/, ""), {
           recursive: true
         });
+        console.log("cp");
         fs.copyFileSync(file, dest);
       })
     );
