@@ -2,6 +2,8 @@ import * as fs from "fs";
 import * as path from "path";
 import recursiveReadDir = require("recursive-readdir");
 
+//TODO: should probably write tests for this since it's
+//caused build errors in the past
 const copyFiles = () => {
   recursiveReadDir("./src")
     .then(files => files.filter(name => name.match(/\.*\.graphql/)))
