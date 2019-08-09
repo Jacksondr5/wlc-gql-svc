@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import * as path from "path";
 import recursiveReadDir = require("recursive-readdir");
 
 const copyFiles = () => {
@@ -6,22 +7,10 @@ const copyFiles = () => {
     .then(files => files.filter(name => name.match(/\.*\.graphql/)))
     .then(files =>
       files.forEach(file => {
-        console.log(file);
         const dest = file.replace(/^src/, "dist");
-        console.log(`dest: ${dest}`);
-        console.log("mkdir");
-        console.log(
-          `dest replaced: ${dest.replace(/\\{1}(\w*)\.graphql$/, "")}`
-        );
-        fs.mkdirSync(dest.replace(/\\{1}(\w*)\.graphql$/, ""), {
+        fs.mkdirSync(path.parse(dest).dir, {
           recursive: true
         });
-        console.log("cp");
-        console.log(fs.lstatSync(file).isDirectory());
-        console.log(fs.existsSync(dest));
-        if (fs.existsSync(dest)) {
-          console.log(fs.lstatSync(dest).isDirectory());
-        }
         fs.copyFileSync(file, dest);
       })
     );
