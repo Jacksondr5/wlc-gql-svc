@@ -13,6 +13,11 @@ const copyFiles = () => {
           recursive: true
         });
         console.log("cp");
+        console.log(fs.lstatSync(file).isDirectory());
+        console.log(fs.existsSync(dest));
+        if (fs.existsSync(dest)) {
+          console.log(fs.lstatSync(dest).isDirectory());
+        }
         fs.copyFileSync(file, dest);
       })
     );
