@@ -1,4 +1,4 @@
-#import Challenge from './Challenge/Challenge.graphql'
+#import Challenge, NewChallenge from './Challenge/Challenge.graphql'
 #import User from './User/User.graphql'
 
 type Query {
