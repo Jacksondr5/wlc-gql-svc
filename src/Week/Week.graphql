@@ -1,3 +1,5 @@
+# import Challenge from '../Challenge/Challenge.graphql'
+
 # Represents a week within a challenge
 type Week {
   # The day of the weigh in

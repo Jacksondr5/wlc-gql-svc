@@ -12,7 +12,7 @@ type User {
   # A list of the user's friends
   friends: [User!]!
   # A list of the user's trophies
-  trophies: [Trophy!]!
+  # trophies: [Trophy!]!
   # A link to the user's profile picture
   profilePicture: String!
   # The user's preferences and other data
@@ -48,11 +48,11 @@ type UserChallenge {
 # The state of the user - challenge relationship
 enum UserChallengeStatus {
   # The user has not decided on whether to join the challenge
-  PENDING = 0
+  PENDING
   # The user has joined the challenge
-  ACCEPTED = 1
+  ACCEPTED
   # The user decided not to join the challenge
-  REJECTED = 2
+  REJECTED
   # The user has/was removed from the challenge
-  WITHDRAWN = 3
+  WITHDRAWN
 }

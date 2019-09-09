@@ -1,3 +1,6 @@
+# import UserChallenge from '../User/User.graphql'
+# import Week from '../Week/Week.graphql'
+
 # A weight loss challenge
 type Challenge {
   # The name of the challenge
