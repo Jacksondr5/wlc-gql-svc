@@ -14,8 +14,8 @@ export type Challenge = {
   name: Scalars["String"];
   startDate: Scalars["String"];
   endDate: Scalars["String"];
-  participants: Array<User>;
   totalPrizeMoney: Scalars["Int"];
+  participants?: Maybe<Array<UserChallenge>>;
 };
 
 export type Mutation = {
@@ -44,7 +44,22 @@ export type User = {
   name: Scalars["String"];
   email: Scalars["String"];
   displayName: Scalars["String"];
+  challenges?: Maybe<Array<UserChallenge>>;
 };
+
+export type UserChallenge = {
+  __typename?: "UserChallenge";
+  user: User;
+  challenge: Challenge;
+  status: UserChallengeStatus;
+};
+
+export enum UserChallengeStatus {
+  Pending = "PENDING",
+  Accepted = "ACCEPTED",
+  Rejected = "REJECTED",
+  Withdrawn = "WITHDRAWN"
+}
 
 export type WeeklyWeighIn = {
   __typename?: "WeeklyWeighIn";
@@ -134,10 +149,12 @@ export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>;
   User: ResolverTypeWrapper<User>;
   String: ResolverTypeWrapper<Scalars["String"]>;
+  UserChallenge: ResolverTypeWrapper<UserChallenge>;
+  Challenge: ResolverTypeWrapper<Challenge>;
+  Int: ResolverTypeWrapper<Scalars["Int"]>;
+  UserChallengeStatus: UserChallengeStatus;
   Mutation: ResolverTypeWrapper<{}>;
   NewChallenge: NewChallenge;
-  Int: ResolverTypeWrapper<Scalars["Int"]>;
-  Challenge: ResolverTypeWrapper<Challenge>;
   Boolean: ResolverTypeWrapper<Scalars["Boolean"]>;
   WeeklyWeighIn: ResolverTypeWrapper<WeeklyWeighIn>;
   WeighIn: ResolverTypeWrapper<WeighIn>;
@@ -148,10 +165,12 @@ export type ResolversParentTypes = {
   Query: {};
   User: User;
   String: Scalars["String"];
+  UserChallenge: UserChallenge;
+  Challenge: Challenge;
+  Int: Scalars["Int"];
+  UserChallengeStatus: UserChallengeStatus;
   Mutation: {};
   NewChallenge: NewChallenge;
-  Int: Scalars["Int"];
-  Challenge: Challenge;
   Boolean: Scalars["Boolean"];
   WeeklyWeighIn: WeeklyWeighIn;
   WeighIn: WeighIn;
@@ -164,12 +183,12 @@ export type ChallengeResolvers<
   name?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   startDate?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   endDate?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
+  totalPrizeMoney?: Resolver<ResolversTypes["Int"], ParentType, ContextType>;
   participants?: Resolver<
-    Array<ResolversTypes["User"]>,
+    Maybe<Array<ResolversTypes["UserChallenge"]>>,
     ParentType,
     ContextType
   >;
-  totalPrizeMoney?: Resolver<ResolversTypes["Int"], ParentType, ContextType>;
 };
 
 export type MutationResolvers<
@@ -198,6 +217,24 @@ export type UserResolvers<
   name?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   email?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   displayName?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
+  challenges?: Resolver<
+    Maybe<Array<ResolversTypes["UserChallenge"]>>,
+    ParentType,
+    ContextType
+  >;
+};
+
+export type UserChallengeResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes["UserChallenge"] = ResolversParentTypes["UserChallenge"]
+> = {
+  user?: Resolver<ResolversTypes["User"], ParentType, ContextType>;
+  challenge?: Resolver<ResolversTypes["Challenge"], ParentType, ContextType>;
+  status?: Resolver<
+    ResolversTypes["UserChallengeStatus"],
+    ParentType,
+    ContextType
+  >;
 };
 
 export type WeeklyWeighInResolvers<
@@ -231,6 +268,7 @@ export type Resolvers<ContextType = any> = {
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
+  UserChallenge?: UserChallengeResolvers<ContextType>;
   WeeklyWeighIn?: WeeklyWeighInResolvers<ContextType>;
   WeighIn?: WeighInResolvers<ContextType>;
 };

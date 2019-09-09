@@ -1,0 +1,9 @@
+# Represents a week within a challenge
+type Week {
+  # The day of the weigh in
+  weighInDay: String!
+  # The list of weigh ins
+  weighIns: [WeighIn!]!
+  # The challenge the week is for
+  challenge: Challenge!
+}

@@ -1,15 +1,28 @@
+# A weight loss challenge
 type Challenge {
+  # The name of the challenge
   name: String!
+  # The starting date of the challenge
   startDate: String!
+  # The ending date of the challenge
   endDate: String!
-  participants: [User!]!
+  # The total amount of prize money in the pot
   totalPrizeMoney: Int!
-  # weeklyWeighIns: [WeeklyWeighIn!]!
+  # The fee users must pay to join the challenge
+  entryFee: Int!
+  # The list of participants in the challenge
+  participants: [UserChallenge!]
+  weeks: [Week!]!
 }
 
+# The input for a new challenge
 input NewChallenge {
+  # The name of the new challenge
   name: String!
+  # The starting date of the new challenge
   startDate: String!
+  # The ending date of the new challenge
   endDate: String!
+  # The fee users must pay to enter the new challenge
   entryFee: Int!
 }

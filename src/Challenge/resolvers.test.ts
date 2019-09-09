@@ -1,4 +1,4 @@
-import ChallengeResolvers from "./resolvers";
+import ChallengeResolvers from "./ChallengeResolvers";
 import {
   Challenge,
   User,

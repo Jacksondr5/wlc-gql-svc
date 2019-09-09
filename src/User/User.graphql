@@ -1,7 +1,58 @@
 type User {
-  name: String!
+  # The user's first name
+  firstName: String!
+  # The user's last name
+  lastName: String!
+  # The user's email
   email: String!
+  # The name the user wants to show the world
   displayName: String!
-  #challenges: [Challenge!]!
-  #friends: [User!]!
+  # A list of the challenges a user has been invited to
+  challenges: [UserChallenge!]
+  # A list of the user's friends
+  friends: [User!]!
+  # A list of the user's trophies
+  trophies: [Trophy!]!
+  # A link to the user's profile picture
+  profilePicture: String!
+  # The user's preferences and other data
+  options: UserOptions!
+}
+
+# The user's preferences and other misc info
+type UserOptions {
+  # Indicates the user's SMS preference
+  shouldRecieveSMSAlerts: Boolean!
+  # Indicates the user's email preference
+  shouldRecieveEmailAlerts: Boolean!
+  # Indicates the user's weigh in reminder preference
+  shouldRevieveWeighInReminders: Boolean!
+  # Indicates the user's weekly report preference
+  shouldRevieveWeeklyReports: Boolean!
+  # Indicates whether the user has saved the site as a PWA
+  hasDownloadedPWA: Boolean!
+  # Indicates whether the user has asked not to get prompts to save the PWA
+  shouldSendPWAAlert: Boolean!
+}
+
+# The relationship between a user and challenge
+type UserChallenge {
+  # The user
+  user: User!
+  # The challenge
+  challenge: Challenge!
+  # The state of the user - challenge relationship
+  status: UserChallengeStatus!
+}
+
+# The state of the user - challenge relationship
+enum UserChallengeStatus {
+  # The user has not decided on whether to join the challenge
+  PENDING = 0
+  # The user has joined the challenge
+  ACCEPTED = 1
+  # The user decided not to join the challenge
+  REJECTED = 2
+  # The user has/was removed from the challenge
+  WITHDRAWN = 3
 }

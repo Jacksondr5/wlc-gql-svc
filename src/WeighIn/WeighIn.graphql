@@ -1,0 +1,15 @@
+# Represents a user's weigh in for a week
+type WeighIn {
+  # The week the weigh in is for
+  week: Week!
+  # The user the weigh in is for
+  user: User!
+  # The user's weight
+  weight: Int!
+  # The user's % lost at this point in the challenge
+  percentLost: Int!
+  # The user's score at this point in the challenge
+  score: Int!
+  # The time at which the user weighed in
+  weighInTime: String!
+}
