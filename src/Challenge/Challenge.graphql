@@ -1,8 +1,8 @@
 # import UserChallenge from '../User/User.graphql'
-# import Week from '../Week/Week.graphql'
 
 # A weight loss challenge
 type Challenge {
+  id: ID!
   # The name of the challenge
   name: String!
   # The starting date of the challenge
@@ -14,8 +14,8 @@ type Challenge {
   # The fee users must pay to join the challenge
   entryFee: Int!
   # The list of participants in the challenge
-  participants: [UserChallenge!]
-  weeks: [Week!]!
+  # participants: [UserChallenge!]
+  # weeks: [Week!]!
 }
 
 # The input for a new challenge
