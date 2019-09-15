@@ -10,7 +10,7 @@
     "start": "npm run serve",
     "build": "npm run build-gql && npm run build-ts",
     "serve": "node dist/server.js",
-    "test": "jest --forceExit --coverage --verbose",
+    "test": "jest --detectOpenHandles --coverage --verbose",
     "watch-test": "npm run test -- --watchAll",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
