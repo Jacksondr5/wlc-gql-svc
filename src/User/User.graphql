@@ -1,4 +1,5 @@
 type User {
+  id: ID!
   # The user's first name
   firstName: String!
   # The user's last name
@@ -8,7 +9,7 @@ type User {
   # The name the user wants to show the world
   displayName: String!
   # A list of the challenges a user has been invited to
-  challenges: [UserChallenge!]
+  # challenges: [UserChallenge!]
   # A list of the user's friends
   friends: [User!]!
   # A list of the user's trophies

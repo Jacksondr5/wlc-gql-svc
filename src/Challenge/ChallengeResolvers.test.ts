@@ -5,14 +5,14 @@ import {
   NewChallenge,
   MutationCreateChallengeArgs
 } from "../_generated/graphql";
-import { ICloudStorage } from "../DataAccess/ICloudStorage";
+import { IChallengeStorage } from "../DataAccess/ICloudStorage";
 import { UserInputError } from "apollo-server";
 const rfdc: any = require("rfdc")();
 
 describe("ChallengeResolver", () => {
   let testChallenge: Challenge,
     testNewChallenge: Challenge,
-    testStorage: ICloudStorage,
+    testStorage: IChallengeStorage,
     _resolver: ChallengeResolvers;
   beforeAll(() => {
     testChallenge = {

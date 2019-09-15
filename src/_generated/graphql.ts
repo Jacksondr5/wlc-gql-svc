@@ -44,21 +44,14 @@ export type Query = {
 
 export type User = {
    __typename?: 'User',
+  id: Scalars['ID'],
   firstName: Scalars['String'],
   lastName: Scalars['String'],
   email: Scalars['String'],
   displayName: Scalars['String'],
-  challenges?: Maybe<Array<UserChallenge>>,
   friends: Array<User>,
   profilePicture: Scalars['String'],
   options: UserOptions,
-};
-
-export type UserChallenge = {
-   __typename?: 'UserChallenge',
-  user: User,
-  challenge: Challenge,
-  status: UserChallengeStatus,
 };
 
 export enum UserChallengeStatus {
@@ -164,36 +157,34 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>,
   User: ResolverTypeWrapper<User>,
-  String: ResolverTypeWrapper<Scalars['String']>,
-  UserChallenge: ResolverTypeWrapper<UserChallenge>,
-  Challenge: ResolverTypeWrapper<Challenge>,
   ID: ResolverTypeWrapper<Scalars['ID']>,
-  Int: ResolverTypeWrapper<Scalars['Int']>,
-  UserChallengeStatus: UserChallengeStatus,
+  String: ResolverTypeWrapper<Scalars['String']>,
   UserOptions: ResolverTypeWrapper<UserOptions>,
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
   Mutation: ResolverTypeWrapper<{}>,
   NewChallenge: NewChallenge,
+  Int: ResolverTypeWrapper<Scalars['Int']>,
+  Challenge: ResolverTypeWrapper<Challenge>,
   WeeklyWeighIn: ResolverTypeWrapper<WeeklyWeighIn>,
   WeighIn: ResolverTypeWrapper<WeighIn>,
+  UserChallengeStatus: UserChallengeStatus,
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Query: {},
   User: User,
-  String: Scalars['String'],
-  UserChallenge: UserChallenge,
-  Challenge: Challenge,
   ID: Scalars['ID'],
-  Int: Scalars['Int'],
-  UserChallengeStatus: UserChallengeStatus,
+  String: Scalars['String'],
   UserOptions: UserOptions,
   Boolean: Scalars['Boolean'],
   Mutation: {},
   NewChallenge: NewChallenge,
+  Int: Scalars['Int'],
+  Challenge: Challenge,
   WeeklyWeighIn: WeeklyWeighIn,
   WeighIn: WeighIn,
+  UserChallengeStatus: UserChallengeStatus,
 };
 
 export type ChallengeResolvers<ContextType = any, ParentType extends ResolversParentTypes['Challenge'] = ResolversParentTypes['Challenge']> = {
@@ -214,20 +205,14 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 };
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>,
   firstName?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   lastName?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   displayName?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
-  challenges?: Resolver<Maybe<Array<ResolversTypes['UserChallenge']>>, ParentType, ContextType>,
   friends?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType>,
   profilePicture?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   options?: Resolver<ResolversTypes['UserOptions'], ParentType, ContextType>,
-};
-
-export type UserChallengeResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserChallenge'] = ResolversParentTypes['UserChallenge']> = {
-  user?: Resolver<ResolversTypes['User'], ParentType, ContextType>,
-  challenge?: Resolver<ResolversTypes['Challenge'], ParentType, ContextType>,
-  status?: Resolver<ResolversTypes['UserChallengeStatus'], ParentType, ContextType>,
 };
 
 export type UserOptionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserOptions'] = ResolversParentTypes['UserOptions']> = {
@@ -256,7 +241,6 @@ export type Resolvers<ContextType = any> = {
   Mutation?: MutationResolvers<ContextType>,
   Query?: QueryResolvers<ContextType>,
   User?: UserResolvers<ContextType>,
-  UserChallenge?: UserChallengeResolvers<ContextType>,
   UserOptions?: UserOptionsResolvers<ContextType>,
   WeeklyWeighIn?: WeeklyWeighInResolvers<ContextType>,
   WeighIn?: WeighInResolvers<ContextType>,

@@ -6,13 +6,13 @@ import {
   UserChallenge,
   NewChallenge
 } from "../_generated/graphql";
-import { ICloudStorage } from "../DataAccess/ICloudStorage";
+import { IChallengeStorage } from "../DataAccess/ICloudStorage";
 import { UserInputError } from "apollo-server";
 
 export default class ChallengeResolvers {
-  private storage: ICloudStorage;
+  private storage: IChallengeStorage;
 
-  constructor(storage: ICloudStorage) {
+  constructor(storage: IChallengeStorage) {
     this.storage = storage;
   }
 
