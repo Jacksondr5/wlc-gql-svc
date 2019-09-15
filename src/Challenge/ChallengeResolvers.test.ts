@@ -1,13 +1,6 @@
 import ChallengeResolvers from "./ChallengeResolvers";
-import {
-  Challenge,
-  User,
-  NewChallenge,
-  MutationCreateChallengeArgs
-} from "../_generated/graphql";
+import { Challenge, NewChallenge } from "../_generated/graphql";
 import { IChallengeStorage } from "../DataAccess/ICloudStorage";
-import { UserInputError } from "apollo-server";
-const rfdc: any = require("rfdc")();
 
 describe("ChallengeResolver", () => {
   let testChallenge: Challenge,
@@ -32,7 +25,7 @@ describe("ChallengeResolver", () => {
       getChallenge: challengeId => {
         return challengeId === testChallenge.id ? testChallenge : null;
       },
-      createChallenge: newChallengeArgs => {
+      createChallenge: () => {
         return testNewChallenge;
       }
     };
