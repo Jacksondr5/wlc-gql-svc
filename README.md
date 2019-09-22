@@ -1,5 +1,7 @@
 # WLC GQL SVC
 
+[![Build Status](https://dev.azure.com/jacksonmiller7855/AgF-WLC/_apis/build/status/Jacksondr5.wlc-gql-svc?branchName=master)](https://dev.azure.com/jacksonmiller7855/AgF-WLC/_build/latest?definitionId=1&branchName=master)
+
 This repo houses the [GrahpQL](https://graphql.org/) service for the WLC apps. The service is used to power the front end web application, several back end processes, and possibly a future mobile app.
 
 ## Key Technologies
