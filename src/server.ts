@@ -3,19 +3,23 @@ import { importSchema } from "graphql-import";
 import { Resolvers } from "./_generated/graphql";
 import ChallengeResolvers from "./Challenge/ChallengeResolvers";
 import UserResolvers from "./User/UserResolvers";
-import { Firestore } from "@google-cloud/firestore";
+import ChallengeStorage from "./DataAccess/ChallengeStorage";
+import * as dotenv from "dotenv";
 
-const db = new Firestore({
-  projectId: "",
-  keyFilename: process.env["GOOGLE_APPLICATION_CREDENTIALS"]
-});
+//Import config vars from .env file
+dotenv.config();
+
+//Initialize resolvers
+//TODO: fine a better way to do this
+const challengeResolvers = new ChallengeResolvers(new ChallengeStorage());
+
 const resolvers: Resolvers = {
   Query: {
-    authenticatedUser: () => UserResolvers.getAuthenticatedUser()
+    // authenticatedUser: () => UserResolvers.getAuthenticatedUser()
   },
   Mutation: {
     createChallenge: (parent, args, context, info) =>
-      ChallengeResolvers.createChallengeMutation(args)
+      challengeResolvers.createChallenge(args.newChallenge)
   }
 };
 const typeDefs = importSchema("./dist/schema.graphql");

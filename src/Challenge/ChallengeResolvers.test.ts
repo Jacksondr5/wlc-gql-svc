@@ -1,6 +1,6 @@
 import ChallengeResolvers from "./ChallengeResolvers";
 import { Challenge, NewChallenge } from "../_generated/graphql";
-import { IChallengeStorage } from "../DataAccess/ICloudStorage";
+import { IChallengeStorage } from "../DataAccess/ChallengeStorage";
 
 describe("ChallengeResolver", () => {
   let testChallenge: Challenge,
@@ -25,9 +25,10 @@ describe("ChallengeResolver", () => {
       getChallenge: challengeId => {
         return challengeId === testChallenge.id ? testChallenge : null;
       },
-      createChallenge: () => {
+      createChallenge: async () => {
         return testNewChallenge;
-      }
+      },
+      deleteChallenge: async (challengeId: string) => {}
     };
     _resolver = new ChallengeResolvers(testStorage);
   });
@@ -61,14 +62,24 @@ describe("ChallengeResolver", () => {
       endDate: "01/01/2020",
       entryFee: 40
     };
-    it("should return the new challenge when created", () => {
+    //TODO: figure out how to test that it creates additonal args correctly
+    //Currently having issues getting mock functions to play with TS
+    it("should return the new challenge when created", async () => {
       //Arrange
 
       //Act
-      const actual = _resolver.createChallenge(newchallengeArgs);
+      const actual = await _resolver.createChallenge(newchallengeArgs);
 
       //Assert
       expect(actual).toStrictEqual(testNewChallenge);
+    });
+  });
+  describe("deleteChallenge", () => {
+    it("should complete successfully when given a correct challengeId", async () => {
+      //Arrange
+      const challengeId = testChallenge.id;
+      //Act & assert
+      expect(() => _resolver.deleteChallenge(challengeId)).not.toThrow();
     });
   });
 });

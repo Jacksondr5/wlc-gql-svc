@@ -23,11 +23,17 @@ export type Challenge = {
 export type Mutation = {
    __typename?: 'Mutation',
   createChallenge: Challenge,
+  deleteChallenge?: Maybe<Scalars['Boolean']>,
 };
 
 
 export type MutationCreateChallengeArgs = {
   newChallenge: NewChallenge
+};
+
+
+export type MutationDeleteChallengeArgs = {
+  challengeId: Scalars['ID']
 };
 
 export type NewChallenge = {
@@ -198,6 +204,7 @@ export type ChallengeResolvers<ContextType = any, ParentType extends ResolversPa
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   createChallenge?: Resolver<ResolversTypes['Challenge'], ParentType, ContextType, RequireFields<MutationCreateChallengeArgs, 'newChallenge'>>,
+  deleteChallenge?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationDeleteChallengeArgs, 'challengeId'>>,
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {

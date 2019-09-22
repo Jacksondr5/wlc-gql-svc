@@ -1,5 +1,8 @@
 import { Challenge, NewChallenge } from "../_generated/graphql";
-import { IChallengeStorage } from "../DataAccess/ICloudStorage";
+import ChallengeStorage, {
+  IChallengeStorage
+} from "../DataAccess/ChallengeStorage";
+import { UserInputError } from "apollo-server";
 
 export default class ChallengeResolvers {
   private storage: IChallengeStorage;
@@ -13,6 +16,15 @@ export default class ChallengeResolvers {
   }
 
   createChallenge(newChallengeArgs: NewChallenge) {
-    return this.storage.createChallenge(newChallengeArgs);
+    return this.storage.createChallenge(newChallengeArgs, {
+      totalPrizeMoney: 0
+    });
+  }
+
+  deleteChallenge(challengeId: string): Promise<void> {
+    if (this.getChallenge(challengeId) == null) {
+      throw new UserInputError("Challenge not found");
+    }
+    return this.storage.deleteChallenge(challengeId);
   }
 }
