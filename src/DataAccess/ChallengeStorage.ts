@@ -1,6 +1,5 @@
 import { Challenge, NewChallenge } from "../_generated/graphql";
 import { db } from "./Firebase";
-import { NotFoundError } from "./Errors";
 
 export interface IChallengeStorage {
   getChallenge(challengeId: string): Challenge;
