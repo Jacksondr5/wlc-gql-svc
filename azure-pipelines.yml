@@ -40,11 +40,8 @@ stages:
               SonarCloud: "SonarCloud"
               organization: "jacksondr5"
               scannerMode: "CLI"
-              configMode: "manual"
-              cliProjectKey: "Jacksondr5_wlc-gql-svc"
-              cliProjectName: "wlc-svc"
-              cliProjectVersion: "$(build.buildNumber)"
-              cliSources: "."
+              configMode: "file"
+              configFile: ".sonarcloud.properties"
 
           - script: npm run build
             displayName: "Build"
