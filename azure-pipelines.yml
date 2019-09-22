@@ -33,18 +33,33 @@ stages:
 
           - script: npm ci
             displayName: "Install dependencies"
+          - task: SonarCloudPrepare@1
+            inputs:
+              SonarCloud: 'SonarCloud'
+              organization: 'jacksondr5'
+              scannerMode: 'CLI'
+              configMode: 'file'
+              configFile: '.sonarcloud.properties'
+
           - script: npm run build
             displayName: "Build"
+
           - script: npm run test
             displayName: "Test"
-          - task: ArchiveFiles@2
-            displayName: "Archive files"
+          
+          - task: SonarCloudAnalyze@1
+
+          - task: SonarCloudPublish@1
             inputs:
-              rootFolderOrFile: "$(System.DefaultWorkingDirectory)"
-              includeRootFolder: false
-              archiveType: zip
-              archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-              replaceExistingArchive: true
+              pollingTimeoutSec: '300'
+          # - task: ArchiveFiles@2
+          #   displayName: "Archive files"
+          #   inputs:
+          #     rootFolderOrFile: "$(System.DefaultWorkingDirectory)"
+          #     includeRootFolder: false
+          #     archiveType: zip
+          #     archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+          #     replaceExistingArchive: true
           # - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
           #   artifact: drop
   # - stage: Deploy
