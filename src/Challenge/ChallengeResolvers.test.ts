@@ -34,12 +34,6 @@ describe("ChallengeResolver", () => {
     });
   });
   describe("createChallenge", () => {
-    const newchallengeArgs: NewChallenge = {
-      name: "test",
-      startDate: "01/01/2019",
-      endDate: "01/01/2020",
-      entryFee: 40
-    };
     //TODO: figure out how to test that it creates additonal args correctly
     //Currently having issues getting mock functions to play with TS
     it("should return the new challenge when created", async () => {

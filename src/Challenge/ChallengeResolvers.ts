@@ -6,7 +6,7 @@ import {
 import { UserInputError } from "apollo-server";
 
 export default class ChallengeResolvers {
-  private storage: IChallengeStorage;
+  private readonly storage: IChallengeStorage;
 
   constructor(storage: IChallengeStorage) {
     this.storage = storage;
