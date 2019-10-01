@@ -46,6 +46,12 @@ export type NewChallenge = {
 export type Query = {
    __typename?: 'Query',
   authenticatedUser: User,
+  getChallenge: Challenge,
+};
+
+
+export type QueryGetChallengeArgs = {
+  challengeId: Scalars['ID']
 };
 
 export type User = {
@@ -167,10 +173,10 @@ export type ResolversTypes = {
   String: ResolverTypeWrapper<Scalars['String']>,
   UserOptions: ResolverTypeWrapper<UserOptions>,
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
+  Challenge: ResolverTypeWrapper<Challenge>,
+  Int: ResolverTypeWrapper<Scalars['Int']>,
   Mutation: ResolverTypeWrapper<{}>,
   NewChallenge: NewChallenge,
-  Int: ResolverTypeWrapper<Scalars['Int']>,
-  Challenge: ResolverTypeWrapper<Challenge>,
   WeeklyWeighIn: ResolverTypeWrapper<WeeklyWeighIn>,
   WeighIn: ResolverTypeWrapper<WeighIn>,
   UserChallengeStatus: UserChallengeStatus,
@@ -184,10 +190,10 @@ export type ResolversParentTypes = {
   String: Scalars['String'],
   UserOptions: UserOptions,
   Boolean: Scalars['Boolean'],
+  Challenge: Challenge,
+  Int: Scalars['Int'],
   Mutation: {},
   NewChallenge: NewChallenge,
-  Int: Scalars['Int'],
-  Challenge: Challenge,
   WeeklyWeighIn: WeeklyWeighIn,
   WeighIn: WeighIn,
   UserChallengeStatus: UserChallengeStatus,
@@ -209,6 +215,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   authenticatedUser?: Resolver<ResolversTypes['User'], ParentType, ContextType>,
+  getChallenge?: Resolver<ResolversTypes['Challenge'], ParentType, ContextType, RequireFields<QueryGetChallengeArgs, 'challengeId'>>,
 };
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {

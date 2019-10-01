@@ -1,55 +1,33 @@
 import ChallengeResolvers from "./ChallengeResolvers";
-import { Challenge, NewChallenge } from "../_generated/graphql";
-import { IChallengeStorage } from "../DataAccess/ChallengeStorage";
+import { NewChallenge } from "../_generated/graphql";
+import { TestChallengeStorage } from "../DataAccess/__mocks__/ChallengeStorage";
+
+jest.mock("../DataAccess/ChallengeStorage");
 
 describe("ChallengeResolver", () => {
-  let testChallenge: Challenge,
-    testNewChallenge: Challenge,
-    testStorage: IChallengeStorage,
-    _resolver: ChallengeResolvers;
+  let _testStorage: TestChallengeStorage, _resolver: ChallengeResolvers;
   beforeAll(() => {
-    testChallenge = {
-      id: "someId",
-      name: "test",
-      startDate: "01/01/2019",
-      endDate: "01/01/2020",
-      totalPrizeMoney: 50,
-      entryFee: 5
-    };
-    testNewChallenge = {
-      ...testChallenge,
-      totalPrizeMoney: 0,
-      id: "some new id"
-    };
-    testStorage = {
-      getChallenge: challengeId => {
-        return challengeId === testChallenge.id ? testChallenge : null;
-      },
-      createChallenge: async () => {
-        return testNewChallenge;
-      },
-      deleteChallenge: async (challengeId: string) => {}
-    };
-    _resolver = new ChallengeResolvers(testStorage);
+    _testStorage = new TestChallengeStorage();
+    _resolver = new ChallengeResolvers(_testStorage);
   });
   describe("getChallenge", () => {
-    it("should return challenge when called with challenge ID", () => {
+    it("should return challenge when called with challenge ID", async () => {
       //Arrange
-      const testChallengeId = testChallenge.id;
+      const testChallengeId = _testStorage.testChallenge.id;
 
       //Act
-      const actual = _resolver.getChallenge(testChallengeId);
+      const actual = await _resolver.getChallenge(testChallengeId);
 
       //Assert
-      expect(actual).toStrictEqual(testChallenge);
+      expect(actual).toStrictEqual(_testStorage.testChallenge);
     });
 
-    it("should return null when called with an incorrect challenge ID", () => {
+    it("should return null when called with an incorrect challenge ID", async () => {
       //Arrange
       const testChallengeId = "some nonsense";
 
       //Act
-      const actual = _resolver.getChallenge(testChallengeId);
+      const actual = await _resolver.getChallenge(testChallengeId);
 
       //Assert
       expect(actual).toBeNull();
@@ -68,18 +46,23 @@ describe("ChallengeResolver", () => {
       //Arrange
 
       //Act
-      const actual = await _resolver.createChallenge(newchallengeArgs);
+      const actual = await _resolver.createChallenge(
+        _testStorage.testNewChallenge
+      );
 
       //Assert
-      expect(actual).toStrictEqual(testNewChallenge);
+      expect(actual).toStrictEqual(_testStorage.testChallenge);
     });
+    it("should call the storage provider with the correct params", async () => {});
   });
   describe("deleteChallenge", () => {
     it("should complete successfully when given a correct challengeId", async () => {
       //Arrange
-      const challengeId = testChallenge.id;
+      const challengeId = _testStorage.testChallenge.id;
       //Act & assert
-      expect(() => _resolver.deleteChallenge(challengeId)).not.toThrow();
+      expect(async () =>
+        expect(await _resolver.deleteChallenge(challengeId)).toBe(true)
+      ).not.toThrow();
     });
   });
 });

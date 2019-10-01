@@ -1,5 +1,6 @@
 import { Challenge, NewChallenge } from "../_generated/graphql";
-import ChallengeStorage, {
+import {
+  NewDBChallenge,
   IChallengeStorage
 } from "../DataAccess/ChallengeStorage";
 import { UserInputError } from "apollo-server";
@@ -11,20 +12,28 @@ export default class ChallengeResolvers {
     this.storage = storage;
   }
 
-  getChallenge(challengeId: string): Challenge {
+  async getChallenge(challengeId: string): Promise<Challenge> {
     return this.storage.getChallenge(challengeId);
   }
 
-  createChallenge(newChallengeArgs: NewChallenge) {
-    return this.storage.createChallenge(newChallengeArgs, {
+  async createChallenge(newChallengeArgs: NewChallenge): Promise<Challenge> {
+    const newStorageChallenge: NewDBChallenge = {
+      ...newChallengeArgs,
       totalPrizeMoney: 0
-    });
+    };
+    //Being more explicit than necessary since at some point soon we'll
+    //need to do more processing here anyway
+    const newChallenge: Challenge = await this.storage.createChallenge(
+      newStorageChallenge
+    );
+    return newChallenge;
   }
 
-  deleteChallenge(challengeId: string): Promise<void> {
+  async deleteChallenge(challengeId: string): Promise<boolean> {
     if (this.getChallenge(challengeId) == null) {
       throw new UserInputError("Challenge not found");
     }
-    return this.storage.deleteChallenge(challengeId);
+    this.storage.deleteChallenge(challengeId);
+    return true;
   }
 }
