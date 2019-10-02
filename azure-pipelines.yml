@@ -56,7 +56,7 @@ stages:
             inputs:
               pollingTimeoutSec: "300"
 
-          - task: npm run push-schema
+          - script: npm run push-schema
             displayName: "Publish schema to Apollo"
           # - task: ArchiveFiles@2
           #   displayName: "Archive files"
