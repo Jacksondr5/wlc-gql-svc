@@ -55,6 +55,9 @@ stages:
           - task: SonarCloudPublish@1
             inputs:
               pollingTimeoutSec: "300"
+
+          - task: npm run push-schema
+            displayName: "Publish schema to Apollo"
           # - task: ArchiveFiles@2
           #   displayName: "Archive files"
           #   inputs:
