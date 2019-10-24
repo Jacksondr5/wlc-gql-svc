@@ -23,7 +23,7 @@ This repo houses the [GrahpQL](https://graphql.org/) service for the WLC apps. T
 3. Debug the server
 
 ```
-> npm run watch-debug
+> npm start
 ```
 
 4. Connect using [GraphQL Playground](https://github.com/prisma/graphql-playground)

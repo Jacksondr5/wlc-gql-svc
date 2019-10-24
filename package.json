@@ -7,9 +7,8 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "start": "npm run serve",
+    "start": "npm run watch-debug",
     "build": "npm run build-gql && npm run build-ts",
-    "serve": "node dist/server.js",
     "test": "jest --detectOpenHandles --coverage --verbose",
     "watch-test": "npm run test -- --watchAll",
     "build-ts": "tsc",
