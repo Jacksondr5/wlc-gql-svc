@@ -27,7 +27,12 @@ const resolvers: Resolvers = {
   }
 };
 const typeDefs = importSchema("./dist/schema.graphql");
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  mocks: true,
+  mockEntireSchema: false
+});
 
 server.listen().then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
