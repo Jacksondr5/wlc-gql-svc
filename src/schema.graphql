@@ -11,14 +11,8 @@ type Mutation {
   deleteChallenge(challengeId: ID!): Boolean
 }
 
-type WeeklyWeighIn {
-  date: String!
-  challenge: Challenge!
-  weighIns: [WeighIn!]!
-}
-
-type WeighIn {
-  weeklyWeighIn: WeeklyWeighIn!
-  user: User!
-  weight: Int!
-}
+# type WeeklyWeighIn {
+#   date: String!
+#   challenge: Challenge!
+#   weighIns: [WeighIn!]!
+# }

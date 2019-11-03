@@ -1,4 +1,6 @@
 # import UserChallenge from '../User/User.graphql'
+# import WeighIn from '../WeighIn/WeighIn.graphql'
+# import Prize from '../Prize/Prize.graphql'
 
 # A weight loss challenge
 type Challenge {
@@ -9,13 +11,20 @@ type Challenge {
   startDate: String!
   # The ending date of the challenge
   endDate: String!
+  # The day of the week the weigh ins take place
+  weighInDay: String!
   # The total amount of prize money in the pot
   totalPrizeMoney: Int!
   # The fee users must pay to join the challenge
   entryFee: Int!
+  # The list of prizes
+  prizes: [Prize!]!
   # The list of participants in the challenge
-  # participants: [UserChallenge!]
-  # weeks: [Week!]!
+  participants: [UserChallenge!]!
+  # The list of weigh ins in the challenge
+  weighIns: [WeighIn!]!
+  # The status of the challenge
+  status: ChallengeStatus!
 }
 
 # The input for a new challenge
@@ -28,4 +37,10 @@ input NewChallenge {
   endDate: String!
   # The fee users must pay to enter the new challenge
   entryFee: Int!
+}
+
+enum ChallengeStatus {
+  UPCOMMING
+  ACTIVE
+  ENDED
 }

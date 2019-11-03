@@ -1,0 +1,24 @@
+interface Prize {
+  # The name of the prize
+  name: String!
+  # The cash amount
+  amount: String!
+}
+
+type RankedPrize implements Prize {
+  # The name of the prize
+  name: String!
+  # The cash amount
+  amount: String!
+  # The placement of the prize
+  rank: Int!
+}
+
+type PercentPrize implements Prize {
+  # The name of the prize
+  name: String!
+  # The cash amount
+  amount: String!
+  # The percentage of the pot that goes to the prize
+  percentage: Int!
+}

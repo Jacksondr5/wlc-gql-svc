@@ -1,3 +1,6 @@
+# import WeighIn from '../WeighIn/WeighIn.graphql'
+# import Challenge, NewChallenge from '../Challenge/Challenge.graphql'
+
 type User {
   id: ID!
   # The user's first name
@@ -9,15 +12,15 @@ type User {
   # The name the user wants to show the world
   displayName: String!
   # A list of the challenges a user has been invited to
-  # challenges: [UserChallenge!]
+  challenges: [UserChallenge!]!
   # A list of the user's friends
-  friends: [User!]!
+  # friends: [User!]!
   # A list of the user's trophies
   # trophies: [Trophy!]!
   # A link to the user's profile picture
-  profilePicture: String!
+  # profilePicture: String!
   # The user's preferences and other data
-  options: UserOptions!
+  # options: UserOptions!
 }
 
 # The user's preferences and other misc info
@@ -38,12 +41,15 @@ type UserOptions {
 
 # The relationship between a user and challenge
 type UserChallenge {
+  id: ID!
   # The user
   user: User!
   # The challenge
   challenge: Challenge!
   # The state of the user - challenge relationship
   status: UserChallengeStatus!
+  # The list of weigh ins for this user and challenge
+  weighIns: [WeighIn!]!
 }
 
 # The state of the user - challenge relationship
@@ -56,4 +62,6 @@ enum UserChallengeStatus {
   REJECTED
   # The user has/was removed from the challenge
   WITHDRAWN
+  # The user is administering the challenge
+  ADMIN
 }
