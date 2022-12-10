@@ -25,7 +25,7 @@
     "apollo-server": "^2.9.3",
     "body-parser": "^1.19.0",
     "dotenv": "^8.1.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "graphql": "^14.5.4",
     "graphql-import": "^0.7.1",
     "request": "^2.88.0",
